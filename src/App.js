@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 // import './App.css';
 import { useState, useEffect } from "react";
+import style from "./App.module.css";
 
 function App() {
   const [toDo, setToDo] = useState("");
@@ -19,13 +20,13 @@ function App() {
   };
   return (
     <div>
-      <h1>My To Dos ({toDos.length})</h1>
-      <form onSubmit={onSubmit}>
+      <h1 className={style.title}>My ToDos ({toDos.length})</h1>
+      <form onSubmit={onSubmit} style={style.form}>
         <input
           onChange={onChange}
           value={toDo}
           type="text"
-          placeholder="Write your to do..."
+          placeholder="Write your todo..."
         ></input>
         <button>Add To Do</button>
       </form>
@@ -33,7 +34,10 @@ function App() {
       <ul>
         {toDos.map((item, index) => (
           <li key={index}>
-            {item} <button onClick={() => deleteBtn(index)}>❌</button>
+            {item}{" "}
+            <button style={style.button} onClick={() => deleteBtn(index)}>
+              ❌
+            </button>
           </li>
         ))}
       </ul>
